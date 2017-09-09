@@ -35,7 +35,7 @@ public class Minesweeper {
         int[][] status = new int[board.length][board.length];
         while (true) {
             printBoard(board, status);
-            System.out.println("Make your move: (uncover/flag) (row) (col)");
+            System.out.println("Make your move: (uncover/flag/unflag) (row) (col)");
             String move = sc.nextLine().trim();
             String[] moveArr = move.split(" ");
             if (moveArr.length != 3) {
@@ -90,6 +90,10 @@ public class Minesweeper {
                 printBoardCheatCode(board);
                 System.out.println("Try again next time!");
                 return false;
+            }
+            if (status[row][col] == 1) {
+                System.out.println("Already uncovered!");
+                return true;
             }
             status[row][col] = 1;
             Queue<Pair> queue = new LinkedList<Pair>();
